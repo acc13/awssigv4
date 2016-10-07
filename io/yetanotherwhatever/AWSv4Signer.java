@@ -14,7 +14,7 @@ http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-UsingHTTPPOST.html
  */
 
 
-public class Main {
+public class AWSv4Signer {
 
     static byte[] HmacSHA256(String data, byte[] key) throws Exception  {
         return HmacSHA256(data.getBytes("UTF-8"), key);
