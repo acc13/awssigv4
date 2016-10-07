@@ -3,9 +3,16 @@ package io.yetanotherwhatever;
 import sun.misc.BASE64Encoder;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+
+
+/*
+Based on
+http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-authentication-HTTPPOST.html
+http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTConstructPolicy.html
+http://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html
+http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-UsingHTTPPOST.html
+ */
+
 
 public class Main {
 
@@ -21,6 +28,9 @@ public class Main {
         return mac.doFinal(data);
     }
 
+    /*
+    based on http://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html
+     */
     static byte[] getSignatureKey(String key, String dateStamp, String regionName, String serviceName) throws Exception  {
         byte[] kSecret = ("AWS4" + key).getBytes("UTF8");
         byte[] kDate    = HmacSHA256(dateStamp, kSecret);
@@ -31,6 +41,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+
 
         String aws_secret_key = args[1];
         String algorithm = "AWS4-HMAC-SHA256";
