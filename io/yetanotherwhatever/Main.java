@@ -57,13 +57,13 @@ public class Main {
         try {
 
             policy_document = policy_document.replaceAll("\\s", "");
-            String policy = (new BASE64Encoder()).encode(
+            String b64_policy_doc = (new BASE64Encoder()).encode(
                     policy_document.getBytes("UTF-8"));
 
 
             byte[] signatureKey = getSignatureKey(aws_secret_key, dateStamp, region, serviceName);
 
-            String stringToSign = policy_document;
+            String stringToSign = b64_policy_doc;
             byte[] signingKey = signatureKey;
 
             byte[] hash = HmacSHA256(stringToSign, signingKey);
