@@ -180,7 +180,7 @@ public class AWSv4Signer {
 
 
         //policy for uploading user's test output
-        String outputFolder = "uploads";
+        String outputFolder = "uploads/output";
         String outputRedirectPage = "submitting.html";
         String outputFormId = "outputForm";
         String outputAdditionalFields = "\n" +
@@ -194,7 +194,7 @@ public class AWSv4Signer {
 
         //policy for uploading user code (.zip)
         String codeRedirectPage = "thanks.html";
-        String codeFolder = "code";
+        String codeFolder = "uploads/code";
         String codeAdditionalFields = "\n" +
                 "\t      <div class=\"formlabel\">File to upload: <input id=\"codeFile\" name=\"file\" type=\"file\"> </div>\n" +
                 "\t      <br> \n" +
